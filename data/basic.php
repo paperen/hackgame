@@ -31,9 +31,7 @@ $settings = array(
 	'default_controller' => 'welcome',
 	'default_method' => 'index',
 	'db_type' => 'sqlite',
-	'db_config' => array(
-		'file' => 'sqlite:./data/first.sqlite',
-	),
+	'db_config' => array(),
 );
 
 ?>

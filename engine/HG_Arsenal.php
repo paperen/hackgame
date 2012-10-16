@@ -355,12 +355,14 @@ class HG_Arsenal
 		return $site_url . '?' . http_build_query( $paras );
 	}
 
-	static public function db_init() {
+	static public function db_init( $db_file = '' ) {
 		$hg_setting = & self::load_engine( 'HG_Setting' );
 		$db_type = $hg_setting->db_type;
 		$db_class = "DB_" . strtolower( $db_type );
 		$db =& self::load_engine( $db_class );
-		$db->connect( $hg_setting->db_config );
+		$db_config = $hg_setting->db_config;
+		if ( $db_file ) $db_config['file'] = $db_file;
+		$db->connect( $db_config );
 		return $db;
 	}
 	

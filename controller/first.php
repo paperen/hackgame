@@ -8,8 +8,8 @@ class first extends HG_Controller
 	}
 
 	public function index() {
-		$db = HG_Arsenal::db_init();
-		print_r( $db->get_one( 'select id,title,author from news' ) );
+		$db = HG_Arsenal::db_init( 'sqlite:db/first.sqlite' );
+		print_r( $db->select( 'select * from news' ) );
 	}
 
 }

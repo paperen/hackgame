@@ -80,7 +80,9 @@ class DB_sqlite
     public function insert_id() {
         return $this->_link->lastInsertId();
     }
-
+	function __destruct() {
+		
+	}
 }
 
 ?>
