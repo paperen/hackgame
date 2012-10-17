@@ -43,7 +43,9 @@ class DB_sqlite
     public function select( $sql ) {
         $results = $this->query($sql);
         $tmp = array();
-        foreach( $results as $result ) $tmp[] = $result;
+        foreach( $results as $result ) {
+			$tmp[] = $result;
+		}
         return $tmp;
     }
     public function result( $result, $index = '' ) {
