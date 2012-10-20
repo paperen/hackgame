@@ -25,9 +25,13 @@ class DB_sqlite
         }
     }
     public function prepare( $sql, array $format ) {
+		$format = array( $format );
         $this->_sth = $this->_link->prepare($sql);
-        $this->_sth->execute($format);
-        return $this->_sth;
+		foreach( $format as $single ) {
+			$this->_sth->bindValue($single[0], $single[1], $single[2]);
+		}
+		$result = $this->_sth->execute();
+        return $result;
     }
     public function query( $sql ) {
         $this->_querynum++;
@@ -36,12 +40,14 @@ class DB_sqlite
     public function get_one( $sql ) {
         $sql = ( strpos(strtolower($sql), 'limit') === false ) ? $sql . ' limit 1 ' : substr($sql, 0, strpos(strtolower($sql), 'limit')) . ' limit 1' ;
         $result = $this->query($sql);
+		if ( empty( $result ) ) return NULL;
         $ret = '';
         foreach( $result as $res ) $ret = $res;
         return $ret;
     }
     public function select( $sql ) {
         $results = $this->query($sql);
+		if ( empty( $results ) ) return NULL;
         $tmp = array();
         foreach( $results as $result ) {
 			$tmp[] = $result;
@@ -83,7 +89,7 @@ class DB_sqlite
         return $this->_link->lastInsertId();
     }
 	function __destruct() {
-		
+
 	}
 }
 

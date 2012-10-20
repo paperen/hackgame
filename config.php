@@ -2,13 +2,16 @@
 
 session_start();
 
+if(function_exists('date_default_timezone_set')) date_default_timezone_set('PRC');
+
 define( 'ROOT', str_replace( '\\', DIRECTORY_SEPARATOR, dirname( __FILE__ ) ) . DIRECTORY_SEPARATOR );
 define( 'ENGINE', ROOT . 'engine' . DIRECTORY_SEPARATOR );
 define( 'CONTROLLER', ROOT . 'controller' . DIRECTORY_SEPARATOR );
 define( 'VIEW', ROOT . 'view' . DIRECTORY_SEPARATOR );
+define( 'SKIN', ROOT . 'skin' . DIRECTORY_SEPARATOR );
 
 //调试模式
-define( 'DEBUG', true );
+define( 'DEBUG', TRUE );
 
 //数据库支持
 define( 'DB_TYPE', 'sqlite' );

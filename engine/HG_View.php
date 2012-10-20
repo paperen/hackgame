@@ -18,8 +18,8 @@ class HG_View
 
 	public function set_skin( $skin ) {
 		$this->_skin = $skin;
-		$this->_skin_path = VIEW . $this->_skin . DIRECTORY_SEPARATOR;
-		$this->_view_url = trim( $this->_hg_setting->siteurl, '/' ) . '/view/' . $this->_skin . '/';
+		$this->_view_path = VIEW . $this->_skin . DIRECTORY_SEPARATOR;
+		$this->_skin_url = trim( $this->_hg_setting->siteurl, '/' ) . '/skin/' . $this->_skin . '/';
 	}
 
 	private function _merge_data( $data ) {
@@ -28,19 +28,19 @@ class HG_View
 
 	public function load( $view, $data = array( ) ) {
 		$this->_merge_data( $data );
-		$view_file = $this->_skin_path . strtolower( $view ) . '.php';
+		$view_file = $this->_view_path . strtolower( $view ) . '.php';
 		if ( !file_exists( $view_file ) ) exit( "{$view}视图文件不存在" );
 		extract( $this->_data );
 		require( $view_file );
 	}
 
 	public function css( $css ) {
-		$css = $this->_view_url . $css;
+		$css = $this->_skin_url . $css;
 		echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"{$css}\" media=\"all\" />";
 	}
 
 	public function js( $js ) {
-		$js = $this->_view_url . $js;
+		$js = $this->_skin_url . $js;
 		echo "<script type=\"text/javascript\" src=\"{$js}\"></script>";
 	}
 

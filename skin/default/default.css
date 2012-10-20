@@ -1,0 +1,33 @@
+/**
+ * hackgame
+ * @paperen
+ */
+
+/* --------- common -------------- */
+body {
+	font-size: 14px;
+}
+.main {
+	margin-top: 120px;
+}
+.navbar .brand {
+	background: url('images/logo.gif');
+	width: 219px;
+	height: 73px;
+	padding: 0;
+	margin: 10px 0 10px -20px;
+}
+.alert .alert-heading {
+	margin-bottom: 7px;
+}
+.loading-bar {
+	display: block;
+	width: 220px;
+	height: 19px;
+	background: url('images/loader_bar.gif');
+}
+/* --------- first ------------ */
+.first_footer li {
+	float: right;
+	margin-left: 10px;
+}

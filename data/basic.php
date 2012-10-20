@@ -16,8 +16,8 @@ $settings = array(
     'skin' => 'default',
     'charset' => 'utf-8',
     'links' => array(
-        '1' => array('txt' => '电脑报数动论坛', 'url' => 'bbs.icpcw.com'),
-        '2' => array('txt' => '习科信息技术论坛', 'url' => 'bbs.blackbap.org'),
+        '1' => array('txt' => '电脑报瓢虫论坛', 'url' => 'bbs.icpcw.com'),
+        '2' => array('txt' => '习科交流论坛', 'url' => 'bbs.blackbap.org'),
     ),
     'lvlsession' => array(
         'welcome' => 'stER2V32ui98',
@@ -32,6 +32,13 @@ $settings = array(
 	'default_method' => 'index',
 	'db_type' => 'sqlite',
 	'db_config' => array(),
+	'title' => array(
+		'first' => '第一关',
+		'second' => '第二关',
+		'third' => '第三关',
+		'fourth' => '第四关',
+		'fifth' => '第五关',
+	),
 );
 
 ?>

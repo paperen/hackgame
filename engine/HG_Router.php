@@ -55,6 +55,13 @@ class HG_Router
 	 * 分析URL
 	 */
 	public function parse() {
+		$path_info = isset( $_SERVER['PATH_INFO'] ) ? $_SERVER['PATH_INFO'] : '';
+		if ( $path_info ) {
+			$path_info_arr = explode( '/', trim( $path_info, '/' ) );
+			if ( count( $path_info_arr ) ) $this->_controller = array_shift( $path_info_arr );
+			if ( count( $path_info_arr ) ) $this->_method = array_shift( $path_info_arr );
+		}
+
 		$parse_url_arr = parse_url( $_SERVER['REQUEST_URI'] );
 		if ( isset( $parse_url_arr['query'] ) ) {
 			if ( HG_ENCODE_ON ) {
@@ -62,20 +69,8 @@ class HG_Router
 			} else {
 				parse_str( $parse_url_arr['query'], $get_arr );
 			}
-			$filter_get_arr = array();
-			foreach( $get_arr as $k => $v ) {
-				if ( $k == $this->_controller_sign ) {
-					$this->_controller = $v;
-					continue;
-				}
-				if ( $k == $this->_method_sign ) {
-					$this->_method = $v;
-					continue;
-				}
-				$filter_get_arr[$k] = $v;
-				$this->_args = array_values( $filter_get_arr );
-				$_GET = $filter_get_arr;
-			}
+			$this->_args = array_values( $get_arr );
+			$_GET = $get_arr;
 		}
 		$this->_set_default();
 
@@ -103,7 +98,11 @@ class HG_Router
 	 */
 	private function _set_default() {
 		if ( empty( $this->_controller ) ) $this->_controller = $this->_hg_setting->default_controller;
-		if ( empty( $this->_method ) ) $this->_method = $this->_hg_setting->default_method;
+		if ( empty( $this->_method ) ) {
+			$this->_method = $this->_hg_setting->default_method;
+		} else {
+			if ( strcasecmp( substr( $this->_method, 0, 1 ), '_' ) === 0 ) $this->_method = $this->_hg_setting->default_method;
+		}
 	}
 
 	public function get_controller() {

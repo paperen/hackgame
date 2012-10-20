@@ -110,10 +110,9 @@ class HG_Arsenal
 		$lvlkey = isset( $hg_setting->lvlsession[$op] ) ? $hg_setting->lvlsession[$op] : array_shift( $hg_setting->lvlsession );
 		$tmp = '';
 		$nowses_data = self::get_hgsession();
-		if ( empty( $nowses_data ) ) {
-			$nowses_data[HG_SESSIONOP] = $op;
-			$nowses_data[HG_SESSIONOPKEY] = $lvlkey;
-		}
+		$nowses_data[HG_SESSIONOP] = $op;
+		$nowses_data[HG_SESSIONOPKEY] = $lvlkey;
+
 		/** 记录开始时间 */
 		if ( !isset( $nowses_data[HG_SESSIONSTART] ) ) $nowses_data[HG_SESSIONSTART] = time();
 		foreach ( $nowses_data as $k => $val )
@@ -127,7 +126,7 @@ class HG_Arsenal
 		$nowses_data[$key] = $val;
 		self::update_hgsession( $nowses_data );
 	}
-	
+
 	static public function clear_hgsession() {
 		$_SESSION[HG_SESSIONKEY] = '';
 	}
@@ -365,7 +364,60 @@ class HG_Arsenal
 		$db->connect( $db_config );
 		return $db;
 	}
-	
+
+	/**
+	 * 文本截取
+	 * @param string $str 中文文本
+	 * @param int $length 截取长度
+	 * @return string 截取后的文本
+	 */
+	static public function gbk_substr( $string, $length, $from = 0 )
+	{
+		$string = strip_tags( $string );
+		if ( $length == 0 )
+		{
+			return $string;
+		}
+		else
+		{
+			return preg_replace( '#^(?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,' . $from . '}' .
+							'((?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,' . $length . '}).*#s', '$1', $string );
+		}
+	}
+
+	static public function config_item( $key ) {
+		$hg_setting = self::load_engine('HG_Setting');
+		return $hg_setting->$key;
+	}
+
+	static public function page_title( $key = '' ) {
+		$hg_setting = self::load_engine( 'HG_Setting' );
+		$title_arr = $hg_setting->title;
+		return ( $key && isset( $title_arr[$key] ) ) ? $title_arr[$key] . ' ' . $hg_setting->sitename : $hg_setting->sitename;
+	}
+
+	static public function base_url( $uri = '' ) {
+		$hg_setting = self::load_engine( 'HG_Setting' );
+		$siteurl = $hg_setting->siteurl;
+		return trim( $siteurl, '/' ) . '/' . $uri;
+	}
+
+	static public function get_token() {
+		$token = md5( time() );
+		$_SESSION[HG_SESSIONAUTHKEY] = $token;
+		return "<input type=\"hidden\" name=\"token\" value=\"{$token}\" />";
+	}
+
+	static public function valid_token() {
+		if ( DEBUG ) return TRUE;
+		$session_token = isset( $_SESSION[HG_SESSIONAUTHKEY] ) ? $_SESSION[HG_SESSIONAUTHKEY] : '';
+		if ( empty( $session_token ) ) return FALSE;
+		$post_token = isset( $_POST['token'] ) ? $_POST['token'] : '';
+		if ( empty( $post_token ) ) return FALSE;
+		$_SESSION[HG_SESSIONAUTHKEY] = '';
+		return ( $session_token === $post_token );
+	}
+
 }
 
 ?>
