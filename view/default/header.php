@@ -5,6 +5,7 @@
 		<meta charset="UTF-8">
 		<title><?php echo $title; ?></title>
 		<?php echo $this->css( 'bootstrap/css/bootstrap.min.css' ); ?>
+		<?php echo $this->css( 'default.css' ); ?>
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top">
@@ -18,4 +19,4 @@
 				</div>
 			</div>
 		</div>
-		<div class="container">
+		<div class="container main">
