@@ -3,6 +3,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 		<title><?php echo $title; ?></title>
 		<?php echo $this->css( 'bootstrap/css/bootstrap.min.css' ); ?>
 		<?php echo $this->css( 'default.css' ); ?>

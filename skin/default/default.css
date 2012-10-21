@@ -26,6 +26,10 @@ body {
 	height: 19px;
 	background: url('images/loader_bar.gif');
 }
+.content {
+	word-break: break-all;
+	word-wrap: break-word;
+}
 /* --------- first ------------ */
 .first_footer li {
 	float: right;

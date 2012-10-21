@@ -38,11 +38,14 @@ class DB_sqlite
         return $this->_link->query( $sql );
     }
     public function get_one( $sql ) {
-        $sql = ( strpos(strtolower($sql), 'limit') === false ) ? $sql . ' limit 1 ' : substr($sql, 0, strpos(strtolower($sql), 'limit')) . ' limit 1' ;
+        $sql = ( strpos(strtolower($sql), 'limit') === false ) ? $sql . ' limit 1 ' : $sql ;
         $result = $this->query($sql);
 		if ( empty( $result ) ) return NULL;
         $ret = '';
-        foreach( $result as $res ) $ret = $res;
+        foreach( $result as $res ) {
+			$ret = $res;
+			break;
+		}
         return $ret;
     }
     public function select( $sql ) {
