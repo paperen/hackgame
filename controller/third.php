@@ -18,7 +18,7 @@ class third extends HG_Controller
 	 * 首页
 	 */
 	public function index() {
-		
+		echo 'third';
 	}
 
 }
