@@ -30,6 +30,9 @@ body {
 	word-break: break-all;
 	word-wrap: break-word;
 }
+.c {
+	clear: both;
+}
 /* --------- first ------------ */
 .first_footer li {
 	float: right;

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * 黑客游戏 第二关
+ * second
+ * @author paperen 2012-10-25
+ */
 class second extends HG_Controller
 {
 
@@ -52,11 +57,13 @@ class second extends HG_Controller
 	public function admin() {
 		if ( isset( $_POST['submit'] ) && $_POST['submit'] && HG_Arsenal::valid_token() ) {
 			try {
-				$username = $_POST['username'];
-				$password = $_POST['password'];
+				$username = isset( $_POST['username'] ) ? trim( $_POST['username'] ) : '';
+				$password = isset( $_POST['password'] ) ? trim( $_POST['password'] ) : '';
+				if ( empty( $username ) || empty( $password ) ) throw new Exception( '帐号或密码不能为空', 0 );
+				
 				$sql = "select zz as password from admin_admin_admin where y='{$username}'";
 				$admin = $this->db->get_one( $sql );
-				if ( empty( $admin ) ) throw new Exception( '帐号错误', 0 );
+				if ( empty( $admin ) ) throw new Exception( '帐号或密码错误', 0 );
 				if ( $admin['password'] !== $password ) throw new Exception( '密码错误', -1 );
 
 				// 设置第二关

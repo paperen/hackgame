@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * 黑客游戏 第一关
+ * first
+ * @author paperen 2012-10-21
+ */
 class first extends HG_Controller
 {
 

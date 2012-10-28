@@ -8,6 +8,7 @@
 		<title><?php echo $title; ?></title>
 		<?php echo $this->css( 'bootstrap/css/bootstrap.min.css' ); ?>
 		<?php echo $this->css( 'default.css' ); ?>
+		<?php echo $this->js( 'script_jquery.js' ); ?>
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top">
