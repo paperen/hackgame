@@ -186,6 +186,17 @@ class HG_Arsenal
 		return $string;
 	}
 
+	/**
+     *
+     * @param mixed $string
+     * @return mixed
+     */
+    static public function sstrip_tags( $string ) {
+        if(!is_array($string)) return strip_tags($string);
+        foreach($string as $key => $val) $string[$key] = self::sstrip_tags($val);
+        return $string;
+    }
+
 	static public function dheader( $url ) {
 		@ob_end_clean();
 		header( "location:$url" );
@@ -354,13 +365,12 @@ class HG_Arsenal
 		return $site_url . '?' . http_build_query( $paras );
 	}
 
-	static public function db_init( $db_file = '' ) {
+	static public function db_init( $db_config = array(), $db_type = '' ) {
 		$hg_setting = & self::load_engine( 'HG_Setting' );
-		$db_type = $hg_setting->db_type;
+		$db_type = ( $db_type ) ? $db_type : $hg_setting->db_type;
 		$db_class = "DB_" . strtolower( $db_type );
 		$db =& self::load_engine( $db_class );
-		$db_config = $hg_setting->db_config;
-		if ( $db_file ) $db_config['file'] = $db_file;
+		$db_config = ( $db_config ) ? $db_config : $hg_setting->db_config;
 		$db->connect( $db_config );
 		return $db;
 	}
@@ -416,6 +426,11 @@ class HG_Arsenal
 		if ( empty( $post_token ) ) return FALSE;
 		$_SESSION[HG_SESSIONAUTHKEY] = '';
 		return ( $session_token === $post_token );
+	}
+
+	static public function valid_email( $str )
+	{
+		return ( ! preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str)) ? FALSE : TRUE;
 	}
 
 }

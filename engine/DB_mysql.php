@@ -21,7 +21,7 @@ class DB_mysql
 		$dbname = $db_config['dbname'];
 		$pconnect = $db_config['pconnect'];
 		$charset = $db_config['charset'];
-		$perfix = $db_config['perfix'];
+		$perfix = $db_config['prefix'];
 
         $this->perfix = $perfix;
         $func = $pconnect == 1 ? 'mysql_pconnect' : 'mysql_connect';

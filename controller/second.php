@@ -12,7 +12,7 @@ class second extends HG_Controller
 
 	function __construct() {
 		parent::__construct();
-		$this->db = HG_Arsenal::db_init( 'sqlite:db/second.sqlite' );
+		$this->db = HG_Arsenal::db_init( array('file' => 'sqlite:db/second.sqlite') );
 	}
 
 	function init_session() {
@@ -60,7 +60,7 @@ class second extends HG_Controller
 				$username = isset( $_POST['username'] ) ? trim( $_POST['username'] ) : '';
 				$password = isset( $_POST['password'] ) ? trim( $_POST['password'] ) : '';
 				if ( empty( $username ) || empty( $password ) ) throw new Exception( '帐号或密码不能为空', 0 );
-				
+
 				$sql = "select zz as password from admin_admin_admin where y='{$username}'";
 				$admin = $this->db->get_one( $sql );
 				if ( empty( $admin ) ) throw new Exception( '帐号或密码错误', 0 );

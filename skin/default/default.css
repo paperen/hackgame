@@ -38,3 +38,15 @@ body {
 	float: right;
 	margin-left: 10px;
 }
+.pass {
+	overflow: hidden;
+	height: 600px;
+}
+.paoxiao {
+	background: url('images/over.jpg') no-repeat;
+	width: 400px;
+	height: 300px;
+}
+.footer-navbar {
+
+}

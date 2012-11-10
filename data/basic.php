@@ -38,6 +38,7 @@ $settings = array(
 		'third' => '第三关',
 		'fourth' => '第四关',
 		'fifth' => '第五关',
+		'pass' => '恭喜 闯关完成',
 	),
 );
 

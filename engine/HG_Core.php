@@ -26,8 +26,8 @@ class HG_Core
 		}
 
 		if ( !get_magic_quotes_gpc() ) {
-			$_GET = HG_Arsenal::saddslashes( $_GET );
-			$_POST = HG_Arsenal::saddslashes( $_POST );
+			$_GET = HG_Arsenal::saddslashes( $_GET ) ;
+			$_POST = HG_Arsenal::sstrip_tags( HG_Arsenal::saddslashes( $_POST ) );
 			$_SESSION = HG_Arsenal::saddslashes( $_SESSION );
 		}
 	}
@@ -66,13 +66,13 @@ class HG_Core
 		$controller_instance->init_session();
 		call_user_func_array( array( &$controller_instance, $method ), $hg_router->get_args() );
 	}
-	
+
 	static function get_controller() {
 		$hg_session = HG_Arsenal::get_hgsession();
 		$op = isset( $hg_session[HG_SESSIONOP] ) ? $hg_session[HG_SESSIONOP] : '';
 		$key = isset( $hg_session[HG_SESSIONOPKEY] ) ? $hg_session[HG_SESSIONOPKEY] : '';
 		if ( empty( $op ) || empty( $key ) ) return NULL;
-		
+
 		$hg_setting = HG_Arsenal::load_engine( 'HG_Setting' );
 		$lvl_session = $hg_setting->lvlsession;
 		if ( !isset( $lvl_session[$op] ) || $key != $lvl_session[$op] ) {

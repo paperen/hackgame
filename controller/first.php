@@ -12,7 +12,7 @@ class first extends HG_Controller
 
 	function __construct() {
 		parent::__construct();
-		$this->db = HG_Arsenal::db_init( 'sqlite:db/first.sqlite' );
+		$this->db = HG_Arsenal::db_init( array('file' => 'sqlite:db/first.sqlite') );
 	}
 
 	function init_session() {
