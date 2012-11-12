@@ -1,0 +1,41 @@
+*{margin:0px;padding:0px;}
+body{font-family:Verdana, Geneva, sans-serif;font-size:14px;}
+.txtbox{height:20px;padding:5px 5px 0px 5px;font-family:Verdana, Geneva, sans-serif;}
+.btn{padding:7px;}
+.auto{width:960px;margin:0px auto;height:auto;}
+.float_left{float:left;}
+.float_right{float:right;}
+.c{clear:both;}
+ul,li{list-style:none;}
+a{color:#666;text-decoration:none;}
+a:hover{color:#333;}
+.login_form{width:450px;margin:15% auto;}
+	.login_form h4{margin-bottom:15px;}
+	.login_form p{margin-bottom:15px;}
+	
+.header{margin-top:30px;border-bottom:1px #F0F0F0 solid;}
+	.header .nav{margin:15px 0px 0px 0px;float:right;}
+		.header .nav li a{display:block;padding:7px;}
+.main{border-bottom:1px #F0F0F0 solid;}		
+	.main .container{width:560px;margin:20px;}
+	/* sidebar */
+	.main .sidebar{width:340px;margin:20px 20px 0px 0px;}
+		.main .sidebar .each{margin-bottom:20px;}
+			.main .sidebar .each h4{margin-bottom:10px;}
+			.main .sidebar .top5 .headline{display:block;margin:5px 0px 5px 0px;font-size:10px;color:#666;}
+				.main .sidebar .top5 .headline b{color:#C00;font-size:14px;}
+				.main .sidebar .top5 small{color:#666;font-style:italic;}
+				.main .sidebar .top5 li{border-bottom:1px #F0F0F0 dashed;padding-bottom:7px;}
+	/* winner_list */
+	.main .winner_list{}
+		.main .winner_list h4{margin-bottom:10px;}
+		.main .winner_list .each{border:1px #E3E3E3 solid;padding:10px;position:relative;margin-bottom:10px;}
+			.main .winner_list .each .gravatar{position:absolute;right:10px;top:10px;border:1px #E3E3E3 solid;padding:2px;}
+			.main .winner_list .each p{margin:5px 0px 5px 0px;}
+/* page */
+.page{float:left;margin:0px 0px 10px 0px;}
+	.page li{float:left;margin:0px 3px 0px 0px;}
+		.page li a{display:block;width:17px;height:17px;border:1px #D5D5D5 solid;line-height:17px;text-align:center;font-size:11px;overflow:hidden;}
+		.page li a:hover{color:#000;border:1px #999 solid;}
+/* footer */
+.footer{color:#CCC;font-size:12px;padding:7px 0px 0px 0px;}
