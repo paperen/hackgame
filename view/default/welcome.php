@@ -22,7 +22,7 @@
 		<div class="container">
 			<div class="span2 offset4 welcome">
 				<span class="logo"></span>
-				<a href="<?php echo $next_lvl_url; ?>" class="btn btn-danger">开始游戏</a>
+				<a href="<?php echo HG_Arsenal::base_url('first'); ?>" class="btn btn-danger">开始游戏</a>
 			</div>
 		</div>
 	</body>
